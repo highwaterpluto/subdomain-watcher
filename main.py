@@ -3,7 +3,7 @@ import os
 import json
 
 # Налаштування
-DOMAINS = ["common.xyz", "neuko.ai"]
+DOMAINS = ["common.xyz", "neuko.ai", "monad.xyz"]
 CRT_URL = "https://crt.sh/?q={}&output=json"
 TG_TOKEN = os.getenv("TG_TOKEN")
 TG_CHAT = os.getenv("TG_CHAT")
