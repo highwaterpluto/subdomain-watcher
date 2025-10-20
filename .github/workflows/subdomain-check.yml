@@ -3,25 +3,36 @@ name: Subdomain Watcher
 on:
   schedule:
     - cron: "*/5 * * * *"  # кожні 5 хвилин
-  workflow_dispatch:       # дозволяє запускати вручну
+  workflow_dispatch:
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: "3.11"
 
       - name: Install dependencies
         run: pip install requests
 
-      - name: Run subdomain checker
+      - name: Run subdomain watcher
         env:
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
           TG_CHAT: ${{ secrets.TG_CHAT }}
-        run: python main.py
+        run: |
+          python main.py
+
+      - name: Commit updated seen.json
+        run: |
+          if [ -f seen.json ]; then
+            git config --global user.email "actions@github.com"
+            git config --global user.name "GitHub Actions"
+            git add seen.json
+            git commit -m "Update seen.json [skip ci]" || echo "No changes"
+            git push
+          fi
