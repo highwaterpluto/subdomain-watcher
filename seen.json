@@ -69,5 +69,28 @@
     "testnet-rpc2.monad.xyz",
     "testnet.monad.xyz",
     "www.monad.xyz"
+  ],
+  "shape.network": [
+    "docs.shape.network",
+    "drops.shape.network",
+    "explorer-sepolia.shape.network",
+    "explorer.shape.network",
+    "gasback.shape.network",
+    "ingest.shape.network",
+    "mainnet-b.shape.network",
+    "mainnet.shape.network",
+    "manifesto.shape.network",
+    "mi.shape.network",
+    "passport.shape.network",
+    "safe.shape.network",
+    "sepolia.shape.network",
+    "shape.network",
+    "stack-api.shape.network",
+    "stack.shape.network",
+    "staging.safe.shape.network",
+    "staging.shape.network",
+    "staging.stack.shape.network",
+    "tools.internal.shape.network",
+    "www.shape.network"
   ]
 }
