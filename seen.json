@@ -22,10 +22,6 @@
     "*.dev.neuko.ai\ndev.neuko.ai",
     "*.neuko.ai\nneuko.ai",
     "api-tg.dev.neuko.ai",
-    "api.dev.neuko.ai",
-    "api.neuko.ai",
-    "chat.neuko.ai",
-    "juicy-chat.neuko.ai",
     "neuko.ai",
     "www.neuko.ai"
   ],
