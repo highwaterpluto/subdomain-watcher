@@ -1,29 +1,4 @@
-import requests
-import json
-import time
-import os
 
-# ====== CONFIG ======
-DOMAINS = ["monad.xyz", "common.xyz", "pharosnetwork.xyz"]
-SEEN_FILE = "seen.json"
-
-TG_TOKEN = os.getenv("TG_TOKEN")
-TG_CHAT = os.getenv("TG_CHAT")
-
-# ====== FUNCTIONS ======
-def send_telegram_message(message):
-    url = f"https://api.telegram.org/bot{TG_TOKEN}/sendMessage"
-    data = {"chat_id": TG_CHAT, "text": message, "parse_mode": "HTML"}
-    try:
-        requests.post(url, data=data)
-    except Exception as e:
-        print(f"Telegram error: {e}")
-
-def get_subdomains(domain):
-    try:
-        url = f"https://crt.sh/?q=%25.{domain}&output=json"
-        response = requests.get(url, timeout=20)
-        data = response.json()
         subs = {entry["name_value"].lower() for entry in data if domain in entry["name_value"]}
         clean = sorted(set(s.replace("*.", "") for s in subs))
         return clean
