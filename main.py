@@ -3,7 +3,7 @@ import json
 import os
 
 # --- ДОМЕНИ ДЛЯ ПЕРЕВІРКИ ---
-DOMAINS = ["common.xyz", "neuko.ai", "monad.xyz"]
+DOMAINS = ["common.xyz", "neuko.ai", "monad.xyz", "citrea.xyz"]
 
 TG_TOKEN = os.getenv("TG_TOKEN")
 TG_CHAT = os.getenv("TG_CHAT")
