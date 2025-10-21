@@ -20,14 +20,16 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Run subdomain watcher
+      - name: Show public IP (optional)
+        run: curl https://api.ipify.org
+
+      - name: Run subdomain watcher (proxy mode)
         env:
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
           TG_CHAT: ${{ secrets.TG_CHAT }}
-        run: |
-          python main.py
+        run: python main.py
 
-      - name: Save seen.json to repo
+      - name: Save seen.json
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
