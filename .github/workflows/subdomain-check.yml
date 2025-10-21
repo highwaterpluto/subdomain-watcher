@@ -1,38 +1,22 @@
-name: Subdomain Watcher
+name: Subdomain Watcher (CertStream)
 
 on:
-  schedule:
-    - cron: "*/5 * * * *"  # кожні 5 хвилин
   workflow_dispatch:
+  push:
+  schedule:
+    - cron: "*/10 * * * *"  # запускає кожні 10 хв для стабільності
 
 jobs:
-  check:
+  watch:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install -r requirements.txt
 
-      - name: Show public IP (optional)
-        run: curl https://api.ipify.org
-
-      - name: Run subdomain watcher (proxy mode)
+      - name: Run CertStream monitor
         env:
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
           TG_CHAT: ${{ secrets.TG_CHAT }}
         run: python main.py
-
-      - name: Save seen.json
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add seen.json
-          git commit -m "Update seen.json" || echo "No changes to commit"
-          git push
